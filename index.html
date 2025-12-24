@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Venus Vacation Prism | Fan Reference</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="buy-now.css" />
+  </head>
+
+  <body>
+    <!-- Header Section -->
+    <header>
+      <div class="platforms">
+        <img src="img/cs_ps5ps4_logo_w.svg" alt="PS5" />
+        <img src="img/cs_stm_logo_w.svg" alt="Steam" />
+      </div>
+
+      <div class="menu-toggle" id="menuToggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </header>
+
+    <!-- Hero Section (UPDATED) -->
+    <section class="hero">
+      <div class="animated-bg"></div>
+      <img
+        src="img/tumblr_adf673876a345f859b23233a6abdb413_94c540c8_480.gif"
+        alt="Animated Background"
+        class="background-video"
+      />
+      <div class="overlay"></div>
+
+      <div class="hero-info">
+        <img src="img/logo.webp" alt="Game Logo" class="hero-logo" />
+        <a href="#" class="buy-now" onclick="showProductModal('2')">Buy Now</a>
+      </div>
+    </section>
+
+    <!-- Character Gallery Section -->
+    <section class="gallery">
+      <h2 class="section-title">CHARACTERS</h2>
+
+      <div class="character-slider">
+        <div class="character active">
+          <img src="img/top-chara_misaki01.jpg" alt="Misaki" />
+          <div class="char-info">
+            <h3>Misaki</h3>
+            <p>
+              A cheerful and kind-hearted girl who supports everyone with her
+              smile.
+            </p>
+          </div>
+        </div>
+
+        <div class="character">
+          <img src="img/top-chara_fiona01.jpg" alt="Fiona" />
+          <div class="char-info">
+            <h3>Fiona</h3>
+            <p>The lively and mischievous girl full of energy and curiosity.</p>
+          </div>
+        </div>
+
+        <div class="character">
+          <img src="img/top-chara_elise03.jpg" alt="Elise" />
+          <div class="char-info">
+            <h3>Elise</h3>
+            <p>
+              Shy but determined, always striving to do her best in everything.
+            </p>
+          </div>
+        </div>
+
+        <div class="character">
+          <img src="img/top-chara_honoka01.jpg" alt="Honoka" />
+          <div class="char-info">
+            <h3>Honoka</h3>
+            <p>
+              A calm and mysterious girl with a bright personality and soft
+              heart.
+            </p>
+          </div>
+        </div>
+
+        <div class="character">
+          <img src="img/top-chara_nanami03.jpg" alt="Nanami" />
+          <div class="char-info">
+            <h3>Nanami</h3>
+            <p>Graceful and elegant, known for her strength and charm.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Arrows -->
+      <button id="prev" class="nav-arrow left">&#10094;</button>
+      <button id="next" class="nav-arrow right">&#10095;</button>
+    </section>
+
+    <!-- Movies Section -->
+    <section class="movies">
+      <h2 class="movies-title">MOVIES</h2>
+
+      <div class="movies-grid">
+        <div class="movie-item large">
+          <video
+            class="movie-thumbnail"
+            controls
+            preload="auto"
+            playsinline
+            src="img/accolades-trailer.mp4"
+          >
+            Your browser does not support the video tag.
+          </video>
+          <h3 class="movie-title">Accolades Trailer</h3>
+        </div>
+
+        <div class="movie-item">
+          <video
+            class="movie-thumbnail"
+            controls
+            preload="auto"
+            playsinline
+            src="img/ps5-game-trailer.mp4"
+          >
+            Your browser does not support the video tag.
+          </video>
+          <h3 class="movie-title">PS5 Game Trailer</h3>
+        </div>
+
+        <div class="movie-item">
+          <video
+            class="movie-thumbnail"
+            controls
+            preload="auto"
+            playsinline
+            src="img/first-trailer.mp4"
+          >
+            Your browser does not support the video tag.
+          </video>
+          <h3 class="movie-title">First Trailer</h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story">
+      <div class="story-content">
+        <h2 class="story-title">STORY</h2>
+        <h3 class="story-subtitle">On this island, the moment of love.</h3>
+        <p class="story-text">
+          On the Venus Islands, a perpetual-summer paradise, you as the
+          appointed owner are preparing for a large festival with the part-time
+          staff Misaki. Misaki suddenly speaks up.
+        </p>
+        <p class="story-text">
+          Hey, Boss. Did you know?<br />
+          About the story of the "Prismatic Meteor Shower" that can soon be seen
+          on this island... "On a night when stars rain down, the souls of those
+          who wish upon the iridescent starlight..." On this island, you will
+          meet 6 Venuses.
+        </p>
+      </div>
+
+      <div class="story-diamonds">
+        <div class="diamond diamond-1">
+          <img src="img/top-story_06.webp" alt="Story Image 1" />
+        </div>
+        <div class="diamond diamond-2">
+          <img src="img/top-story_02.webp" alt="Story Image 2" />
+        </div>
+        <div class="diamond diamond-3">
+          <img src="img/top-story_01.jpg" alt="Story Image 3" />
+        </div>
+        <div class="diamond diamond-4">
+          <img src="img/top-story_04.jpg" alt="Story Image 4" />
+        </div>
+        <div class="diamond diamond-5">
+          <img src="img/top-story_05.jpg" alt="Story Image 5" />
+        </div>
+        <div class="diamond diamond-6">
+          <img src="img/top-chara_misaki02.jpg" alt="Story Image 6" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products">
+      <h2 class="products-title">PRODUCTS</h2>
+
+      <!-- Version Toggle -->
+      <div class="version-toggle">
+        <button class="version-btn active" data-version="physical">
+          Physical Version
+        </button>
+        <button class="version-btn" data-version="digital">
+          Digital Version
+        </button>
+      </div>
+
+      <div class="included-items">
+        <button class="included-btn">▶ Included Items Chart</button>
+      </div>
+
+      <!-- Product Grid -->
+      <div class="products-grid">
+        <!-- Cheongsam Outfits -->
+        <div class="product-card">
+          <div class="product-image">
+            <img
+              src="img/top-products_bene-early.webp"
+              alt="Cheongsam Outfits"
+            />
+            <div class="product-badge early-purchase">Early Purchase Bonus</div>
+            <div class="add-icon">+</div>
+          </div>
+          <div class="product-info">
+            <h3>
+              "Cheongsam" Outfits <span class="set-info">(Set of 6)</span>
+            </h3>
+            <p>
+              One cheongsam outfit that can be worn in-game by Misaki, Honoka,
+              Tamaki, Fiona, Nanami, and Elise can be obtained for each
+              character.
+            </p>
+            <button class="buy-now-btn" onclick="showProductModal('3')">
+              Buy Now
+            </button>
+            <button class="view-details" onclick="showProductModal('3')">
+              ⊕ View Details
+            </button>
+          </div>
+        </div>
+
+        <!-- Plumeria Hair Ornament -->
+        <div class="product-card">
+          <div class="product-image">
+            <img
+              src="img/top-products_bene-preorder.webp"
+              alt="Plumeria Hair Ornament"
+            />
+            <div class="product-badge digital-preorder">
+              Digital Pre-order Bonus
+            </div>
+            <div class="add-icon">+</div>
+          </div>
+          <div class="product-info">
+            <h3>
+              "Plumeria Hair Ornament" Hairstyles
+              <span class="set-info">(Set of 6)</span>
+            </h3>
+            <p>
+              One hairstyle with plumeria hair ornaments that can be worn
+              in-game by Misaki, Honoka, Tamaki, Fiona, Nanami, and Elise can be
+              obtained for each character.
+            </p>
+            <button class="buy-now-btn" onclick="showProductModal('4')">
+              Buy Now
+            </button>
+            <button class="view-details" onclick="showProductModal('4')">
+              ⊕ View Details
+            </button>
+          </div>
+        </div>
+
+        <!-- Digital Deluxe Upgrade Pack -->
+        <div class="product-card">
+          <div class="product-image">
+            <img
+              src="img/top-products_ddx-ug-en.webp"
+              alt="Digital Deluxe Upgrade Pack"
+            />
+            <div class="product-badge dlc-only">DLC only set</div>
+            <div class="add-icon">+</div>
+          </div>
+          <div class="product-info">
+            <h3>Digital Deluxe Upgrade Pack</h3>
+            <p class="platform-info">PS5® / PS4® / Steam®</p>
+            <button class="buy-now-btn" onclick="showProductModal('2')">
+              Buy Now
+            </button>
+            <button class="view-details" onclick="showProductModal('2')">
+              ⊕ View Details
+            </button>
+          </div>
+        </div>
+
+        <!-- Resort Cami Dress -->
+        <div class="product-card">
+          <div class="product-image">
+            <img
+              src="img/top-products_bene-doaxvv-gl.webp"
+              alt="Resort Cami Dress"
+            />
+            <div class="product-badge linked-purchase">
+              "DEAD OR ALIVE Xtreme Venus Vacation" Linked Purchase Bonus
+            </div>
+            <div class="add-icon">+</div>
+          </div>
+          <div class="product-info">
+            <h3>
+              SSR Swimsuit for Misaki "Resort Cami Dress
+              <span class="color-variant">(Blue)</span>"
+            </h3>
+            <p>
+              Players can obtain the serial code for outfits that can be used in
+              "DEAD OR ALIVE Xtreme Venus Vacation".
+            </p>
+            <button class="buy-now-btn" onclick="showProductModal('5')">
+              Buy Now
+            </button>
+            <button class="view-details" onclick="showProductModal('5')">
+              ⊕ View Details
+            </button>
+          </div>
+        </div>
+
+        <!-- Standard Version -->
+        <div class="product-card">
+          <div class="product-image">
+            <img src="img/top-products_normal.webp" alt="Standard Version" />
+            <div class="add-icon">+</div>
+          </div>
+          <div class="product-info">
+            <h3>Standard Version</h3>
+            <p class="platform-info">PS5® / PS4®</p>
+            <button class="buy-now-btn" onclick="showProductModal('1')">
+              Buy Now
+            </button>
+            <button class="view-details" onclick="showProductModal('1')">
+              ⊕ View Details
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Collaboration Button -->
+      <div class="collaboration-section">
+        <button class="collaboration-btn">Yom Collaboration Page</button>
+      </div>
+
+      <!-- Upgrade Notice -->
+      <div class="upgrade-notice">
+        <p>Upgrade from the base game or other editions!</p>
+      </div>
+    </section>
+
+    <!-- Comments Section -->
+    <section class="comments">
+      <div class="comments-container">
+        <h2 class="comments-title">COMMENTS</h2>
+
+        <!-- Add Comment Form -->
+        <div class="add-comment">
+          <h3>Leave a Comment</h3>
+          <form id="commentForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="commentName">Name *</label>
+                <input type="text" id="commentName" name="name" required />
+              </div>
+              <div class="form-group">
+                <label for="commentEmail">Email *</label>
+                <input type="email" id="commentEmail" name="email" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="commentText">Comment *</label>
+              <textarea
+                id="commentText"
+                name="comment"
+                rows="4"
+                placeholder="Share your thoughts about Venus Vacation PRISM..."
+                required
+              ></textarea>
+            </div>
+            <button type="submit" class="submit-comment-btn">
+              Post Comment
+            </button>
+          </form>
+        </div>
+
+        <!-- Comments List -->
+        <div class="comments-list" id="commentsList">
+          <div class="comment">
+            <div class="comment-avatar">
+              <div class="avatar-circle">A</div>
+            </div>
+            <div class="comment-content">
+              <div class="comment-header">
+                <span class="comment-author">Anime Fan</span>
+                <span class="comment-date">2 hours ago</span>
+              </div>
+              <p class="comment-text">
+                This game looks absolutely amazing! The character designs are
+                stunning and I can't wait to play it. The graphics look so much
+                better than the previous version!
+              </p>
+              <div class="comment-actions">
+                <button class="like-btn">👍 12</button>
+                <button class="reply-btn">Reply</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="comment">
+            <div class="comment-avatar">
+              <div class="avatar-circle">G</div>
+            </div>
+            <div class="comment-content">
+              <div class="comment-header">
+                <span class="comment-author">Gamer123</span>
+                <span class="comment-date">5 hours ago</span>
+              </div>
+              <p class="comment-text">
+                Finally! I've been waiting for this release. The new features
+                and characters look incredible. Definitely getting the Digital
+                Deluxe Edition!
+              </p>
+              <div class="comment-actions">
+                <button class="like-btn">👍 8</button>
+                <button class="reply-btn">Reply</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="comment">
+            <div class="comment-avatar">
+              <div class="avatar-circle">M</div>
+            </div>
+            <div class="comment-content">
+              <div class="comment-header">
+                <span class="comment-author">MisakiFan</span>
+                <span class="comment-date">1 day ago</span>
+              </div>
+              <p class="comment-text">
+                Misaki looks so cute in the new outfits! The cheongsam
+                collection is my favorite. Can't wait to see all the
+                customization options.
+              </p>
+              <div class="comment-actions">
+                <button class="like-btn">👍 15</button>
+                <button class="reply-btn">Reply</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Promo Banner -->
+    <div class="promo">
+      <div class="promo-content">
+        <h3>The soundtrack is now available!</h3>
+        <a href="#" class="details-btn">Details</a>
+      </div>
+      <img src="img/vvp_music-subs_cover.webp" alt="Character" />
+    </div>
+
+    <!-- Buy Now Components -->
+    <!-- Product Modal -->
+    <div id="productModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="modalProductName">Product Name</h2>
+          <span class="close" onclick="closeModal('productModal')"
+            >&times;</span
+          >
+        </div>
+        <div class="modal-body">
+          <div class="product-details">
+            <div class="product-image">
+              <img id="modalProductImage" src="" alt="Product Image" />
+            </div>
+            <div class="product-info">
+              <p id="modalProductDescription">Product description...</p>
+              <div class="product-price">
+                <span class="price" id="modalProductPrice">$0.00</span>
+              </div>
+              <div class="product-metadata" id="modalProductMetadata">
+                <!-- Platform info, features, etc. -->
+              </div>
+              <div class="quantity-selector">
+                <label for="quantity">Quantity:</label>
+                <div class="quantity-controls">
+                  <button type="button" id="decreaseQty">-</button>
+                  <input
+                    type="number"
+                    id="quantity"
+                    value="1"
+                    min="1"
+                    max="10"
+                  />
+                  <button type="button" id="increaseQty">+</button>
+                </div>
+              </div>
+              <div class="modal-actions">
+                <button
+                  type="button"
+                  id="addToWishlistBtn"
+                  class="btn btn-primary"
+                >
+                  Add to Wishlist
+                </button>
+                <button id="buyNowBtn" class="btn btn-secondary">
+                  Buy Now
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wishlist Sidebar -->
+    <div id="wishlistSidebar" class="cart-sidebar">
+      <div class="cart-header">
+        <h3>My Wishlist</h3>
+        <button id="closeWishlist" class="close-cart">&times;</button>
+      </div>
+      <div class="cart-items" id="wishlistItems">
+        <!-- Wishlist items will be populated here -->
+      </div>
+      <div class="cart-footer">
+        <div class="cart-actions">
+          <button id="clearWishlistBtn" class="btn btn-outline">
+            Clear Wishlist
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkoutModal" class="modal">
+      <div class="modal-content checkout-modal">
+        <div class="modal-header">
+          <h2>Checkout</h2>
+          <span class="close" onclick="closeModal('checkoutModal')"
+            >&times;</span
+          >
+        </div>
+        <div class="modal-body">
+          <div class="checkout-steps">
+            <div class="step active" data-step="1">1. Shipping</div>
+            <div class="step" data-step="2">2. Payment</div>
+            <div class="step" data-step="3">3. Confirmation</div>
+          </div>
+
+          <!-- Step 1: Shipping Information -->
+          <div id="step1" class="checkout-step active">
+            <h3>Shipping Information</h3>
+            <form id="shippingForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="firstName">First Name *</label>
+                  <input type="text" id="firstName" name="firstName" required />
+                </div>
+                <div class="form-group">
+                  <label for="lastName">Last Name *</label>
+                  <input type="text" id="lastName" name="lastName" required />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required />
+              </div>
+              <div class="form-group">
+                <label for="address">Address *</label>
+                <input type="text" id="address" name="address" required />
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="city">City *</label>
+                  <input type="text" id="city" name="city" required />
+                </div>
+                <div class="form-group">
+                  <label for="state">State *</label>
+                  <input type="text" id="state" name="state" required />
+                </div>
+                <div class="form-group">
+                  <label for="zipCode">ZIP Code *</label>
+                  <input type="text" id="zipCode" name="zipCode" required />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="country">Country *</label>
+                <select id="country" name="country" required>
+                  <option value="US">United States</option>
+                  <option value="CA">Canada</option>
+                  <option value="UK">United Kingdom</option>
+                  <option value="JP">Japan</option>
+                  <option value="AU">Australia</option>
+                </select>
+              </div>
+            </form>
+            <div class="step-actions">
+              <button id="nextToPayment" class="btn btn-primary">
+                Continue to Payment
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 2: Payment Information -->
+          <div id="step2" class="checkout-step">
+            <h3>Payment Information</h3>
+            <div class="payment-methods">
+              <div class="payment-method active" data-method="card">
+                <input
+                  type="radio"
+                  id="cardPayment"
+                  name="paymentMethod"
+                  value="card"
+                  checked
+                />
+                <label for="cardPayment">Credit/Debit Card</label>
+              </div>
+            </div>
+            <div id="cardPaymentForm" class="payment-form">
+              <div class="form-group">
+                <label for="cardNumber">Card Number *</label>
+                <input
+                  type="text"
+                  id="cardNumber"
+                  name="cardNumber"
+                  placeholder="1234 5678 9012 3456"
+                  required
+                />
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="expiryDate">Expiry Date *</label>
+                  <input
+                    type="text"
+                    id="expiryDate"
+                    name="expiryDate"
+                    placeholder="MM/YY"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="cvv">CVV *</label>
+                  <input
+                    type="text"
+                    id="cvv"
+                    name="cvv"
+                    placeholder="123"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="cardName">Name on Card *</label>
+                <input type="text" id="cardName" name="cardName" required />
+              </div>
+            </div>
+            <div class="step-actions">
+              <button id="backToShipping" class="btn btn-outline">Back</button>
+              <button id="nextToConfirmation" class="btn btn-primary">
+                Review Order
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 3: Order Confirmation -->
+          <div id="step3" class="checkout-step">
+            <h3>Order Confirmation</h3>
+            <div class="order-summary">
+              <div class="summary-section">
+                <h4>Order Items</h4>
+                <div id="confirmationItems"></div>
+              </div>
+              <div class="summary-section">
+                <h4>Shipping Address</h4>
+                <div id="confirmationShipping"></div>
+              </div>
+              <div class="summary-section">
+                <h4>Payment Method</h4>
+                <div id="confirmationPayment"></div>
+              </div>
+              <div class="summary-section">
+                <h4>Order Total</h4>
+                <div id="confirmationTotal"></div>
+              </div>
+            </div>
+            <div class="step-actions">
+              <button id="backToPayment" class="btn btn-outline">Back</button>
+              <button id="placeOrder" class="btn btn-primary">
+                Place Order
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wishlist Icon -->
+    <div id="wishlistIcon" class="cart-icon">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+        />
+      </svg>
+      <span id="wishlistCount" class="cart-count">0</span>
+    </div>
+
+    <!-- Wishlist Label -->
+    <div class="wishlist-label">
+      <span>Wishlist</span>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+      <div class="loading-spinner"></div>
+      <p>Processing your order...</p>
+    </div>
+
+    <!-- Success Message -->
+    <div id="successMessage" class="success-message">
+      <div class="success-content">
+        <div class="success-icon">✓</div>
+        <h3>Order Placed Successfully!</h3>
+        <p>
+          Thank you for your purchase. You will receive a confirmation email
+          shortly.
+        </p>
+        <button id="closeSuccess" class="btn btn-primary">
+          Continue Shopping
+        </button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="buy-now.js"></script>
+
+    <!-- Simple close modal script -->
+    <script>
+      // Simple, bulletproof close function
+      function closeModalNow(modalId) {
+        console.log("closeModalNow called for:", modalId);
+        const modal = document.getElementById(modalId);
+        if (modal) {
+          modal.style.display = "none";
+          modal.style.visibility = "hidden";
+          modal.style.opacity = "0";
+          console.log("Modal closed:", modalId);
+        } else {
+          console.log("Modal not found:", modalId);
+        }
+      }
+
+      // Alternative close function
+      window.closeModal = function (modalId) {
+        closeModalNow(modalId);
+      };
+
+      // ESC key support
+      document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") {
+          closeModalNow("productModal");
+          closeModalNow("checkoutModal");
+        }
+      });
+
+      // Click outside to close
+      document.addEventListener("click", function (e) {
+        if (e.target.classList.contains("modal")) {
+          closeModalNow(e.target.id);
+        }
+      });
+
+      // Comments functionality
+      document
+        .getElementById("commentForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const name = document.getElementById("commentName").value;
+          const email = document.getElementById("commentEmail").value;
+          const comment = document.getElementById("commentText").value;
+
+          if (name && email && comment) {
+            addComment(name, comment);
+            this.reset();
+          }
+        });
+
+      function addComment(name, text) {
+        const commentsList = document.getElementById("commentsList");
+        const newComment = document.createElement("div");
+        newComment.className = "comment";
+
+        const avatar = name.charAt(0).toUpperCase();
+        const timeAgo = "Just now";
+
+        newComment.innerHTML = `
+        <div class="comment-avatar">
+          <div class="avatar-circle">${avatar}</div>
+        </div>
+        <div class="comment-content">
+          <div class="comment-header">
+            <span class="comment-author">${name}</span>
+            <span class="comment-date">${timeAgo}</span>
+          </div>
+          <p class="comment-text">${text}</p>
+          <div class="comment-actions">
+            <button class="like-btn" onclick="likeComment(this)">👍 0</button>
+            <button class="reply-btn">Reply</button>
+          </div>
+        </div>
+      `;
+
+        commentsList.insertBefore(newComment, commentsList.firstChild);
+
+        // Add animation
+        newComment.style.opacity = "0";
+        newComment.style.transform = "translateY(-20px)";
+        setTimeout(() => {
+          newComment.style.transition = "all 0.3s ease";
+          newComment.style.opacity = "1";
+          newComment.style.transform = "translateY(0)";
+        }, 100);
+      }
+
+      function likeComment(button) {
+        const currentLikes = parseInt(button.textContent.match(/\d+/)[0]);
+        button.innerHTML = `👍 ${currentLikes + 1}`;
+        button.style.color = "#ff6b9d";
+        button.disabled = true;
+      }
+    </script>
+  </body>
+</html>

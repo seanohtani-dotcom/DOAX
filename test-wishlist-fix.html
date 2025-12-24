@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wishlist Test - Venus Vacation PRISM</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+      }
+      .test-container {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 30px;
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+      }
+      button {
+        background: linear-gradient(135deg, #ff6b9d, #4ecdc4);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        margin: 10px 5px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        transition: transform 0.2s;
+      }
+      button:hover {
+        transform: translateY(-2px);
+      }
+      .result {
+        background: rgba(0, 0, 0, 0.3);
+        padding: 15px;
+        border-radius: 8px;
+        margin-top: 20px;
+        white-space: pre-wrap;
+        font-family: monospace;
+        font-size: 12px;
+      }
+      .success {
+        color: #4ade80;
+      }
+      .error {
+        color: #f87171;
+      }
+      h1 {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .status {
+        text-align: center;
+        padding: 10px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+      }
+      .status.online {
+        background: rgba(74, 222, 128, 0.2);
+      }
+      .status.offline {
+        background: rgba(248, 113, 113, 0.2);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="test-container">
+      <h1>🧪 Wishlist Function Test</h1>
+      <div id="status" class="status">Checking server...</div>
+
+      <div>
+        <h3>Test Actions:</h3>
+        <button onclick="testAddToWishlist()">
+          ➕ Add Product 1 to Wishlist
+        </button>
+        <button onclick="testGetWishlist()">📋 Get Wishlist</button>
+        <button onclick="testRemoveFromWishlist()">➖ Remove Product 1</button>
+        <button onclick="testClearWishlist()">🗑️ Clear Wishlist</button>
+      </div>
+
+      <div id="result" class="result">Results will appear here...</div>
+    </div>
+
+    <script>
+      const API_URL = "http://localhost:3000/api";
+      const sessionId = "test_session_" + Date.now();
+
+      async function checkServer() {
+        try {
+          const response = await fetch(`${API_URL}/health`);
+          const data = await response.json();
+          const statusEl = document.getElementById("status");
+          statusEl.className = "status online";
+          statusEl.innerHTML = "✅ Server Online: " + data.message;
+        } catch (error) {
+          const statusEl = document.getElementById("status");
+          statusEl.className = "status offline";
+          statusEl.innerHTML = "❌ Server Offline: " + error.message;
+        }
+      }
+
+      function showResult(message, isError = false) {
+        const resultEl = document.getElementById("result");
+        resultEl.className = "result " + (isError ? "error" : "success");
+        resultEl.textContent = message;
+      }
+
+      async function testAddToWishlist() {
+        try {
+          showResult("Adding product to wishlist...");
+          const response = await fetch(`${API_URL}/wishlist/add`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              productId: "1",
+              sessionId: sessionId,
+            }),
+          });
+
+          const data = await response.json();
+
+          if (data.success) {
+            showResult("✅ SUCCESS!\n\n" + JSON.stringify(data, null, 2));
+          } else {
+            showResult("❌ FAILED!\n\n" + JSON.stringify(data, null, 2), true);
+          }
+        } catch (error) {
+          showResult("❌ ERROR!\n\n" + error.message, true);
+        }
+      }
+
+      async function testGetWishlist() {
+        try {
+          showResult("Fetching wishlist...");
+          const response = await fetch(
+            `${API_URL}/wishlist?sessionId=${sessionId}`
+          );
+          const data = await response.json();
+
+          if (data.success) {
+            showResult(
+              "✅ SUCCESS!\n\nWishlist Items: " +
+                data.data.length +
+                "\n\n" +
+                JSON.stringify(data, null, 2)
+            );
+          } else {
+            showResult("❌ FAILED!\n\n" + JSON.stringify(data, null, 2), true);
+          }
+        } catch (error) {
+          showResult("❌ ERROR!\n\n" + error.message, true);
+        }
+      }
+
+      async function testRemoveFromWishlist() {
+        try {
+          showResult("Removing product from wishlist...");
+          const response = await fetch(
+            `${API_URL}/wishlist/1?sessionId=${sessionId}`,
+            {
+              method: "DELETE",
+            }
+          );
+
+          const data = await response.json();
+
+          if (data.success) {
+            showResult("✅ SUCCESS!\n\n" + JSON.stringify(data, null, 2));
+          } else {
+            showResult("❌ FAILED!\n\n" + JSON.stringify(data, null, 2), true);
+          }
+        } catch (error) {
+          showResult("❌ ERROR!\n\n" + error.message, true);
+        }
+      }
+
+      async function testClearWishlist() {
+        try {
+          showResult("Clearing wishlist...");
+          const response = await fetch(
+            `${API_URL}/wishlist?sessionId=${sessionId}`,
+            {
+              method: "DELETE",
+            }
+          );
+
+          const data = await response.json();
+
+          if (data.success) {
+            showResult("✅ SUCCESS!\n\n" + JSON.stringify(data, null, 2));
+          } else {
+            showResult("❌ FAILED!\n\n" + JSON.stringify(data, null, 2), true);
+          }
+        } catch (error) {
+          showResult("❌ ERROR!\n\n" + error.message, true);
+        }
+      }
+
+      // Check server on load
+      checkServer();
+    </script>
+  </body>
+</html>
