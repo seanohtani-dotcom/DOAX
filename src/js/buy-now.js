@@ -256,7 +256,13 @@ class VenusVacationStore {
         this.wishlist.push(data.data);
         this.updateWishlistUI();
         this.updateWishlistCount();
-        this.showWishlistNotification(`✅ Added ${product.name} to wishlist`);
+
+        // Show toast notification
+        if (window.showToast) {
+          window.showToast(`Added ${product.name} to wishlist!`, "success");
+        } else {
+          this.showWishlistNotification(`✅ Added ${product.name} to wishlist`);
+        }
         return true;
       } else {
         console.error("❌ API returned error:", data.error);
@@ -280,6 +286,9 @@ class VenusVacationStore {
 
   async removeFromWishlist(productId) {
     try {
+      const product = this.products.find((p) => p.id === productId);
+      const productName = product ? product.name : "Item";
+
       const response = await fetch(
         `${this.apiUrl}/wishlist/${productId}?sessionId=${this.sessionId}`,
         {
@@ -295,8 +304,16 @@ class VenusVacationStore {
         );
         this.updateWishlistUI();
         this.updateWishlistCount();
+
+        // Show toast notification
+        if (window.showToast) {
+          window.showToast(`Removed ${productName} from wishlist`, "info");
+        }
       } else {
         console.error("Failed to remove from wishlist:", data.error);
+        if (window.showToast) {
+          window.showToast("Failed to remove from wishlist", "error");
+        }
       }
     } catch (error) {
       console.error("Error removing from wishlist:", error);

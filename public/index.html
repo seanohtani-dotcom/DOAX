@@ -1,19 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Venus Vacation Prism | Fan Reference</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="buy-now.css" />
+    <link rel="stylesheet" href="../src/css/style.css" />
+    <link rel="stylesheet" href="../src/css/buy-now.css" />
   </head>
 
   <body>
+    <!-- Loading Screen -->
+    <div class="page-loader">
+      <div class="loader-content">
+        <div class="loader-spinner"></div>
+        <h2 style="font-size: 24px; margin: 0">Loading Venus Vacation...</h2>
+      </div>
+    </div>
+
     <!-- Header Section -->
     <header>
       <div class="platforms">
-        <img src="img/cs_ps5ps4_logo_w.svg" alt="PS5" />
-        <img src="img/cs_stm_logo_w.svg" alt="Steam" />
+        <img src="../assets/img/cs_ps5ps4_logo_w.svg" alt="PS5" />
+        <img src="../assets/img/cs_stm_logo_w.svg" alt="Steam" />
       </div>
 
       <div class="menu-toggle" id="menuToggle">
@@ -27,14 +35,14 @@
     <section class="hero">
       <div class="animated-bg"></div>
       <img
-        src="img/tumblr_adf673876a345f859b23233a6abdb413_94c540c8_480.gif"
+        src="../assets/img/tumblr_adf673876a345f859b23233a6abdb413_94c540c8_480.gif"
         alt="Animated Background"
         class="background-video"
       />
       <div class="overlay"></div>
 
       <div class="hero-info">
-        <img src="img/logo.webp" alt="Game Logo" class="hero-logo" />
+        <img src="../assets/img/logo.webp" alt="Game Logo" class="hero-logo" />
         <a href="#" class="buy-now" onclick="showProductModal('2')">Buy Now</a>
       </div>
     </section>
@@ -45,7 +53,7 @@
 
       <div class="character-slider">
         <div class="character active">
-          <img src="img/top-chara_misaki01.jpg" alt="Misaki" />
+          <img src="../assets/img/top-chara_misaki01.jpg" alt="Misaki" />
           <div class="char-info">
             <h3>Misaki</h3>
             <p>
@@ -56,7 +64,7 @@
         </div>
 
         <div class="character">
-          <img src="img/top-chara_fiona01.jpg" alt="Fiona" />
+          <img src="../assets/img/top-chara_fiona01.jpg" alt="Fiona" />
           <div class="char-info">
             <h3>Fiona</h3>
             <p>The lively and mischievous girl full of energy and curiosity.</p>
@@ -64,7 +72,7 @@
         </div>
 
         <div class="character">
-          <img src="img/top-chara_elise03.jpg" alt="Elise" />
+          <img src="../assets/img/top-chara_elise03.jpg" alt="Elise" />
           <div class="char-info">
             <h3>Elise</h3>
             <p>
@@ -74,7 +82,7 @@
         </div>
 
         <div class="character">
-          <img src="img/top-chara_honoka01.jpg" alt="Honoka" />
+          <img src="../assets/img/top-chara_honoka01.jpg" alt="Honoka" />
           <div class="char-info">
             <h3>Honoka</h3>
             <p>
@@ -85,7 +93,7 @@
         </div>
 
         <div class="character">
-          <img src="img/top-chara_nanami03.jpg" alt="Nanami" />
+          <img src="../assets/img/top-chara_nanami03.jpg" alt="Nanami" />
           <div class="char-info">
             <h3>Nanami</h3>
             <p>Graceful and elegant, known for her strength and charm.</p>
@@ -109,7 +117,7 @@
             controls
             preload="auto"
             playsinline
-            src="img/accolades-trailer.mp4"
+            src="../assets/img/accolades-trailer.mp4"
           >
             Your browser does not support the video tag.
           </video>
@@ -122,7 +130,7 @@
             controls
             preload="auto"
             playsinline
-            src="img/ps5-game-trailer.mp4"
+            src="../assets/img/ps5-game-trailer.mp4"
           >
             Your browser does not support the video tag.
           </video>
@@ -135,7 +143,7 @@
             controls
             preload="auto"
             playsinline
-            src="img/first-trailer.mp4"
+            src="../assets/img/first-trailer.mp4"
           >
             Your browser does not support the video tag.
           </video>
@@ -165,22 +173,22 @@
 
       <div class="story-diamonds">
         <div class="diamond diamond-1">
-          <img src="img/top-story_06.webp" alt="Story Image 1" />
+          <img src="../assets/img/top-story_06.webp" alt="Story Image 1" />
         </div>
         <div class="diamond diamond-2">
-          <img src="img/top-story_02.webp" alt="Story Image 2" />
+          <img src="../assets/img/top-story_02.webp" alt="Story Image 2" />
         </div>
         <div class="diamond diamond-3">
-          <img src="img/top-story_01.jpg" alt="Story Image 3" />
+          <img src="../assets/img/top-story_01.jpg" alt="Story Image 3" />
         </div>
         <div class="diamond diamond-4">
-          <img src="img/top-story_04.jpg" alt="Story Image 4" />
+          <img src="../assets/img/top-story_04.jpg" alt="Story Image 4" />
         </div>
         <div class="diamond diamond-5">
-          <img src="img/top-story_05.jpg" alt="Story Image 5" />
+          <img src="../assets/img/top-story_05.jpg" alt="Story Image 5" />
         </div>
         <div class="diamond diamond-6">
-          <img src="img/top-chara_misaki02.jpg" alt="Story Image 6" />
+          <img src="../assets/img/top-chara_misaki02.jpg" alt="Story Image 6" />
         </div>
       </div>
     </section>
@@ -209,7 +217,7 @@
         <div class="product-card">
           <div class="product-image">
             <img
-              src="img/top-products_bene-early.webp"
+              src="../assets/img/top-products_bene-early.webp"
               alt="Cheongsam Outfits"
             />
             <div class="product-badge early-purchase">Early Purchase Bonus</div>
@@ -237,7 +245,7 @@
         <div class="product-card">
           <div class="product-image">
             <img
-              src="img/top-products_bene-preorder.webp"
+              src="../assets/img/top-products_bene-preorder.webp"
               alt="Plumeria Hair Ornament"
             />
             <div class="product-badge digital-preorder">
@@ -268,7 +276,7 @@
         <div class="product-card">
           <div class="product-image">
             <img
-              src="img/top-products_ddx-ug-en.webp"
+              src="../assets/img/top-products_ddx-ug-en.webp"
               alt="Digital Deluxe Upgrade Pack"
             />
             <div class="product-badge dlc-only">DLC only set</div>
@@ -290,7 +298,7 @@
         <div class="product-card">
           <div class="product-image">
             <img
-              src="img/top-products_bene-doaxvv-gl.webp"
+              src="../assets/img/top-products_bene-doaxvv-gl.webp"
               alt="Resort Cami Dress"
             />
             <div class="product-badge linked-purchase">
@@ -319,7 +327,7 @@
         <!-- Standard Version -->
         <div class="product-card">
           <div class="product-image">
-            <img src="img/top-products_normal.webp" alt="Standard Version" />
+            <img src="../assets/img/top-products_normal.webp" alt="Standard Version" />
             <div class="add-icon">+</div>
           </div>
           <div class="product-info">
@@ -455,7 +463,7 @@
         <h3>The soundtrack is now available!</h3>
         <a href="#" class="details-btn">Details</a>
       </div>
-      <img src="img/vvp_music-subs_cover.webp" alt="Character" />
+      <img src="../assets/img/vvp_music-subs_cover.webp" alt="Character" />
     </div>
 
     <!-- Buy Now Components -->
@@ -730,8 +738,11 @@
       </div>
     </div>
 
-    <script src="script.js"></script>
-    <script src="buy-now.js"></script>
+    <script type="module" src="../dist/video-player.js"></script>
+    <script type="module" src="../dist/cart-manager.js"></script>
+    <script src="../src/js/script.js"></script>
+    <script src="../src/js/buy-now.js"></script>
+    <script src="../src/js/design-enhancements.js"></script>
 
     <!-- Simple close modal script -->
     <script>

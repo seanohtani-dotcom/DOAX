@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test Video & Cart Fixes</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        background: #f5f5f5;
+      }
+      .test-section {
+        background: white;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #667eea;
+      }
+      h2 {
+        color: #764ba2;
+        margin-top: 0;
+      }
+      .status {
+        display: inline-block;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-weight: bold;
+        margin-left: 10px;
+      }
+      .status.pass {
+        background: #10b981;
+        color: white;
+      }
+      .status.fail {
+        background: #ef4444;
+        color: white;
+      }
+      .status.pending {
+        background: #f59e0b;
+        color: white;
+      }
+
+      video {
+        width: 100%;
+        max-width: 600px;
+        border-radius: 10px;
+      }
+
+      button {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        margin: 5px;
+      }
+
+      button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+      }
+
+      button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      .test-result {
+        margin: 10px 0;
+        padding: 10px;
+        background: #f9fafb;
+        border-left: 4px solid #667eea;
+        border-radius: 4px;
+      }
+
+      .cart-display {
+        background: #f9fafb;
+        padding: 15px;
+        border-radius: 8px;
+        margin: 10px 0;
+      }
+
+      .cart-item {
+        padding: 10px;
+        background: white;
+        margin: 5px 0;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🧪 Video Player & Cart Manager Test Suite</h1>
+
+    <!-- Video Player Tests -->
+    <div class="test-section">
+      <h2>
+        📹 Video Player Tests
+        <span class="status pending" id="videoStatus">Testing...</span>
+      </h2>
+
+      <div style="margin: 20px 0">
+        <video class="movie-thumbnail" controls preload="auto" playsinline>
+          <source src="../assets/img/first-trailer.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div>
+        <button onclick="testVideoPlay()">▶️ Test Play</button>
+        <button onclick="testVideoPause()">⏸️ Test Pause</button>
+        <button onclick="testVideoToggle()">🔄 Test Toggle</button>
+        <button onclick="testVideoError()">❌ Test Error Handling</button>
+      </div>
+
+      <div id="videoResults"></div>
+    </div>
+
+    <!-- Cart Manager Tests -->
+    <div class="test-section">
+      <h2>
+        🛒 Cart Manager Tests
+        <span class="status pending" id="cartStatus">Testing...</span>
+      </h2>
+
+      <div>
+        <button onclick="testAddItem()">➕ Test Add Item</button>
+        <button onclick="testAddDuplicate()">🔄 Test Duplicate</button>
+        <button onclick="testRemoveItem()">➖ Test Remove</button>
+        <button onclick="testQuantityLimit()">🔢 Test Quantity Limit</button>
+        <button onclick="testClearCart()">🗑️ Test Clear Cart</button>
+        <button onclick="testPersistence()">💾 Test Persistence</button>
+      </div>
+
+      <div class="cart-display">
+        <h3>Current Cart State:</h3>
+        <div id="cartDisplay">
+          <p>Cart is empty</p>
+        </div>
+        <div style="margin-top: 10px; font-weight: bold">
+          Total Items: <span id="cartCount">0</span> | Total Price: $<span
+            id="cartTotal"
+            >0.00</span
+          >
+        </div>
+      </div>
+
+      <div id="cartResults"></div>
+    </div>
+
+    <!-- Test Summary -->
+    <div class="test-section">
+      <h2>📊 Test Summary</h2>
+      <div id="testSummary">
+        <p>Run tests to see results...</p>
+      </div>
+    </div>
+
+    <!-- Load modules -->
+    <script type="module" src="../dist/video-player.js"></script>
+    <script type="module" src="../dist/cart-manager.js"></script>
+
+    <script>
+      let testResults = {
+        video: { passed: 0, failed: 0, total: 0 },
+        cart: { passed: 0, failed: 0, total: 0 },
+      };
+
+      function logResult(category, testName, passed, message) {
+        testResults[category].total++;
+        if (passed) {
+          testResults[category].passed++;
+        } else {
+          testResults[category].failed++;
+        }
+
+        const resultsDiv = document.getElementById(category + "Results");
+        const resultDiv = document.createElement("div");
+        resultDiv.className = "test-result";
+        resultDiv.innerHTML = `
+                <strong>${passed ? "✅" : "❌"} ${testName}</strong><br>
+                ${message}
+            `;
+        resultsDiv.appendChild(resultDiv);
+
+        updateSummary();
+        updateStatus(category);
+      }
+
+      function updateStatus(category) {
+        const statusEl = document.getElementById(category + "Status");
+        const results = testResults[category];
+
+        if (results.total === 0) {
+          statusEl.className = "status pending";
+          statusEl.textContent = "Testing...";
+        } else if (results.failed === 0) {
+          statusEl.className = "status pass";
+          statusEl.textContent = `✅ All ${results.passed} tests passed`;
+        } else {
+          statusEl.className = "status fail";
+          statusEl.textContent = `❌ ${results.failed} failed, ${results.passed} passed`;
+        }
+      }
+
+      function updateSummary() {
+        const totalPassed = testResults.video.passed + testResults.cart.passed;
+        const totalFailed = testResults.video.failed + testResults.cart.failed;
+        const totalTests = testResults.video.total + testResults.cart.total;
+
+        document.getElementById("testSummary").innerHTML = `
+                <h3>Overall Results:</h3>
+                <p style="font-size: 24px;">
+                    <span style="color: #10b981;">✅ ${totalPassed} passed</span> | 
+                    <span style="color: #ef4444;">❌ ${totalFailed} failed</span> | 
+                    <span style="color: #667eea;">📝 ${totalTests} total</span>
+                </p>
+                <p>Success Rate: ${totalTests > 0 ? Math.round((totalPassed / totalTests) * 100) : 0}%</p>
+            `;
+      }
+
+      // Video Tests
+      async function testVideoPlay() {
+        try {
+          const videoId = window.videoPlayer.getVideoIds()[0];
+          await window.videoPlayer.play(videoId);
+          logResult(
+            "video",
+            "Play Video",
+            true,
+            "Video started playing successfully",
+          );
+        } catch (error) {
+          logResult("video", "Play Video", false, `Error: ${error.message}`);
+        }
+      }
+
+      function testVideoPause() {
+        try {
+          const videoId = window.videoPlayer.getVideoIds()[0];
+          window.videoPlayer.pause(videoId);
+          logResult("video", "Pause Video", true, "Video paused successfully");
+        } catch (error) {
+          logResult("video", "Pause Video", false, `Error: ${error.message}`);
+        }
+      }
+
+      async function testVideoToggle() {
+        try {
+          const videoId = window.videoPlayer.getVideoIds()[0];
+          await window.videoPlayer.togglePlayPause(videoId);
+          logResult(
+            "video",
+            "Toggle Play/Pause",
+            true,
+            "Video toggle works correctly",
+          );
+        } catch (error) {
+          logResult(
+            "video",
+            "Toggle Play/Pause",
+            false,
+            `Error: ${error.message}`,
+          );
+        }
+      }
+
+      function testVideoError() {
+        try {
+          const video = window.videoPlayer.getVideo("nonexistent");
+          if (video === undefined) {
+            logResult(
+              "video",
+              "Error Handling",
+              true,
+              "Correctly returns undefined for invalid video ID",
+            );
+          } else {
+            logResult(
+              "video",
+              "Error Handling",
+              false,
+              "Should return undefined for invalid ID",
+            );
+          }
+        } catch (error) {
+          logResult(
+            "video",
+            "Error Handling",
+            true,
+            `Correctly throws error: ${error.message}`,
+          );
+        }
+      }
+
+      // Cart Tests
+      async function testAddItem() {
+        try {
+          await window.cartManager.addItem({
+            id: "test-1",
+            name: "Test Product",
+            price: 59.99,
+            quantity: 1,
+          });
+          updateCartDisplay();
+          logResult(
+            "cart",
+            "Add Item",
+            true,
+            "Item added to cart successfully",
+          );
+        } catch (error) {
+          logResult("cart", "Add Item", false, `Error: ${error.message}`);
+        }
+      }
+
+      async function testAddDuplicate() {
+        try {
+          await window.cartManager.addItem({
+            id: "test-1",
+            name: "Test Product",
+            price: 59.99,
+            quantity: 2,
+          });
+          const state = window.cartManager.getState();
+          const item = state.items.find((i) => i.id === "test-1");
+          if (item && item.quantity >= 2) {
+            updateCartDisplay();
+            logResult(
+              "cart",
+              "Add Duplicate",
+              true,
+              `Quantity merged correctly (${item.quantity} items)`,
+            );
+          } else {
+            logResult(
+              "cart",
+              "Add Duplicate",
+              false,
+              "Quantity not merged correctly",
+            );
+          }
+        } catch (error) {
+          logResult("cart", "Add Duplicate", false, `Error: ${error.message}`);
+        }
+      }
+
+      async function testRemoveItem() {
+        try {
+          await window.cartManager.removeItem("test-1");
+          updateCartDisplay();
+          logResult("cart", "Remove Item", true, "Item removed successfully");
+        } catch (error) {
+          logResult("cart", "Remove Item", false, `Error: ${error.message}`);
+        }
+      }
+
+      async function testQuantityLimit() {
+        try {
+          await window.cartManager.addItem({
+            id: "test-limit",
+            name: "Limit Test",
+            price: 10.0,
+            quantity: 15, // Should fail - exceeds max
+          });
+          logResult(
+            "cart",
+            "Quantity Limit",
+            false,
+            "Should have rejected quantity > 10",
+          );
+        } catch (error) {
+          if (error.code === "INVALID_ITEM") {
+            logResult(
+              "cart",
+              "Quantity Limit",
+              true,
+              "Correctly rejected invalid quantity",
+            );
+          } else {
+            logResult(
+              "cart",
+              "Quantity Limit",
+              false,
+              `Wrong error: ${error.message}`,
+            );
+          }
+        }
+      }
+
+      async function testClearCart() {
+        try {
+          await window.cartManager.clearCart();
+          const state = window.cartManager.getState();
+          if (state.items.length === 0) {
+            updateCartDisplay();
+            logResult("cart", "Clear Cart", true, "Cart cleared successfully");
+          } else {
+            logResult(
+              "cart",
+              "Clear Cart",
+              false,
+              "Cart not empty after clear",
+            );
+          }
+        } catch (error) {
+          logResult("cart", "Clear Cart", false, `Error: ${error.message}`);
+        }
+      }
+
+      async function testPersistence() {
+        try {
+          await window.cartManager.addItem({
+            id: "persist-test",
+            name: "Persistence Test",
+            price: 25.0,
+            quantity: 1,
+          });
+
+          // Check localStorage
+          const stored = localStorage.getItem("venusVacation_cart");
+          if (stored) {
+            const parsed = JSON.parse(stored);
+            if (
+              Array.isArray(parsed) &&
+              parsed.some((item) => item.id === "persist-test")
+            ) {
+              updateCartDisplay();
+              logResult(
+                "cart",
+                "Persistence",
+                true,
+                "Cart saved to localStorage correctly",
+              );
+            } else {
+              logResult(
+                "cart",
+                "Persistence",
+                false,
+                "Item not found in localStorage",
+              );
+            }
+          } else {
+            logResult(
+              "cart",
+              "Persistence",
+              false,
+              "Nothing saved to localStorage",
+            );
+          }
+        } catch (error) {
+          logResult("cart", "Persistence", false, `Error: ${error.message}`);
+        }
+      }
+
+      function updateCartDisplay() {
+        const state = window.cartManager.getState();
+        const displayDiv = document.getElementById("cartDisplay");
+
+        if (state.items.length === 0) {
+          displayDiv.innerHTML = "<p>Cart is empty</p>";
+        } else {
+          displayDiv.innerHTML = state.items
+            .map(
+              (item) => `
+                    <div class="cart-item">
+                        <div>
+                            <strong>${item.name}</strong><br>
+                            <small>ID: ${item.id} | Qty: ${item.quantity}</small>
+                        </div>
+                        <div>$${(item.price * item.quantity).toFixed(2)}</div>
+                    </div>
+                `,
+            )
+            .join("");
+        }
+
+        document.getElementById("cartCount").textContent = state.itemCount;
+        document.getElementById("cartTotal").textContent =
+          state.total.toFixed(2);
+      }
+
+      // Initialize
+      window.addEventListener("load", () => {
+        console.log("Test page loaded");
+        console.log("Video Player:", window.videoPlayer);
+        console.log("Cart Manager:", window.cartManager);
+
+        // Subscribe to cart changes
+        if (window.cartManager) {
+          window.cartManager.subscribe((state) => {
+            console.log("Cart updated:", state);
+            updateCartDisplay();
+          });
+        }
+
+        updateSummary();
+      });
+    </script>
+  </body>
+</html>

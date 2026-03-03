@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buy Now - Venus Vacation PRISM</title>
+    <link rel="stylesheet" href="../src/css/style.css" />
+    <link rel="stylesheet" href="../src/css/buy-now.css" />
+  </head>
+  <body>
+    <!-- Loading Screen -->
+    <div class="page-loader">
+      <div class="loader-content">
+        <div class="loader-spinner"></div>
+        <h2 style="font-size: 24px; margin: 0">Loading Store...</h2>
+      </div>
+    </div>
+
+    <!-- Product Modal -->
+    <div id="productModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="modalProductName">Product Name</h2>
+          <span
+            class="close"
+            onclick="
+              document.getElementById('productModal').style.display = 'none'
+            "
+            >&times;</span
+          >
+        </div>
+        <div class="modal-body">
+          <div class="product-details">
+            <div class="product-image">
+              <img id="modalProductImage" src="" alt="Product Image" />
+            </div>
+            <div class="product-info">
+              <p id="modalProductDescription">Product description...</p>
+              <div class="product-price">
+                <span class="price" id="modalProductPrice">$0.00</span>
+              </div>
+              <div class="product-metadata" id="modalProductMetadata">
+                <!-- Platform info, features, etc. -->
+              </div>
+              <div class="quantity-selector">
+                <label for="quantity">Quantity:</label>
+                <div class="quantity-controls">
+                  <button type="button" id="decreaseQty">-</button>
+                  <input
+                    type="number"
+                    id="quantity"
+                    value="1"
+                    min="1"
+                    max="10"
+                  />
+                  <button type="button" id="increaseQty">+</button>
+                </div>
+              </div>
+              <div class="modal-actions">
+                <button id="addToWishlistBtn" class="btn btn-primary">
+                  Add to Wishlist
+                </button>
+                <button id="buyNowBtn" class="btn btn-secondary">
+                  Buy Now
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Shopping Cart Sidebar -->
+    <div id="cartSidebar" class="cart-sidebar">
+      <div class="cart-header">
+        <h3>Shopping Cart</h3>
+        <button id="closeCart" class="close-cart">&times;</button>
+      </div>
+      <div class="cart-items" id="cartItems">
+        <!-- Cart items will be populated here -->
+      </div>
+      <div class="cart-footer">
+        <div class="cart-total">
+          <div class="total-line">
+            <span>Subtotal: </span>
+            <span id="cartSubtotal">$0.00</span>
+          </div>
+          <div class="total-line">
+            <span>Tax: </span>
+            <span id="cartTax">$0.00</span>
+          </div>
+          <div class="total-line total-final">
+            <span>Total: </span>
+            <span id="cartTotal">$0.00</span>
+          </div>
+        </div>
+        <div class="cart-actions">
+          <button id="checkoutBtn" class="btn btn-primary btn-full">
+            Proceed to Checkout
+          </button>
+          <button id="clearCartBtn" class="btn btn-outline">Clear Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkoutModal" class="modal">
+      <div class="modal-content checkout-modal">
+        <div class="modal-header">
+          <h2>Checkout</h2>
+          <span class="close" onclick="closeModal('checkoutModal')"
+            >&times;</span
+          >
+        </div>
+        <div class="modal-body">
+          <div class="checkout-steps">
+            <div class="step active" data-step="1">1. Shipping</div>
+            <div class="step" data-step="2">2. Payment</div>
+            <div class="step" data-step="3">3. Confirmation</div>
+          </div>
+
+          <!-- Step 1: Shipping Information -->
+          <div id="step1" class="checkout-step active">
+            <h3>Shipping Information</h3>
+            <form id="shippingForm">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="firstName">First Name *</label>
+                  <input type="text" id="firstName" name="firstName" required />
+                </div>
+                <div class="form-group">
+                  <label for="lastName">Last Name *</label>
+                  <input type="text" id="lastName" name="lastName" required />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required />
+              </div>
+              <div class="form-group">
+                <label for="address">Address *</label>
+                <input type="text" id="address" name="address" required />
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="city">City *</label>
+                  <input type="text" id="city" name="city" required />
+                </div>
+                <div class="form-group">
+                  <label for="state">State *</label>
+                  <input type="text" id="state" name="state" required />
+                </div>
+                <div class="form-group">
+                  <label for="zipCode">ZIP Code *</label>
+                  <input type="text" id="zipCode" name="zipCode" required />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="country">Country *</label>
+                <select id="country" name="country" required>
+                  <option value="US">United States</option>
+                  <option value="CA">Canada</option>
+                  <option value="UK">United Kingdom</option>
+                  <option value="JP">Japan</option>
+                  <option value="AU">Australia</option>
+                </select>
+              </div>
+            </form>
+            <div class="step-actions">
+              <button id="nextToPayment" class="btn btn-primary">
+                Continue to Payment
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 2: Payment Information -->
+          <div id="step2" class="checkout-step">
+            <h3>Payment Information</h3>
+            <div class="payment-methods">
+              <div class="payment-method active" data-method="card">
+                <input
+                  type="radio"
+                  id="cardPayment"
+                  name="paymentMethod"
+                  value="card"
+                  checked
+                />
+                <label for="cardPayment">Credit/Debit Card</label>
+              </div>
+            </div>
+            <div id="cardPaymentForm" class="payment-form">
+              <div class="form-group">
+                <label for="cardNumber">Card Number *</label>
+                <input
+                  type="text"
+                  id="cardNumber"
+                  name="cardNumber"
+                  placeholder="1234 5678 9012 3456"
+                  required
+                />
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="expiryDate">Expiry Date *</label>
+                  <input
+                    type="text"
+                    id="expiryDate"
+                    name="expiryDate"
+                    placeholder="MM/YY"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="cvv">CVV *</label>
+                  <input
+                    type="text"
+                    id="cvv"
+                    name="cvv"
+                    placeholder="123"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="cardName">Name on Card *</label>
+                <input type="text" id="cardName" name="cardName" required />
+              </div>
+            </div>
+            <div class="step-actions">
+              <button id="backToShipping" class="btn btn-outline">Back</button>
+              <button id="nextToConfirmation" class="btn btn-primary">
+                Review Order
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 3: Order Confirmation -->
+          <div id="step3" class="checkout-step">
+            <h3>Order Confirmation</h3>
+            <div class="order-summary">
+              <div class="summary-section">
+                <h4>Order Items</h4>
+                <div id="confirmationItems"></div>
+              </div>
+              <div class="summary-section">
+                <h4>Shipping Address</h4>
+                <div id="confirmationShipping"></div>
+              </div>
+              <div class="summary-section">
+                <h4>Payment Method</h4>
+                <div id="confirmationPayment"></div>
+              </div>
+              <div class="summary-section">
+                <h4>Order Total</h4>
+                <div id="confirmationTotal"></div>
+              </div>
+            </div>
+            <div class="step-actions">
+              <button id="backToPayment" class="btn btn-outline">Back</button>
+              <button id="placeOrder" class="btn btn-primary">
+                Place Order
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cart Icon (to be added to main page) -->
+    <div id="cartIcon" class="cart-icon">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <path
+          d="M7 18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L21.7 4H5.21l-.94-2H1zm16 16c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
+        />
+      </svg>
+      <span id="cartCount" class="cart-count">0</span>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+      <div class="loading-spinner"></div>
+      <p>Processing your order...</p>
+    </div>
+
+    <!-- Success Message -->
+    <div id="successMessage" class="success-message">
+      <div class="success-content">
+        <div class="success-icon">✓</div>
+        <h3>Order Placed Successfully!</h3>
+        <p>
+          Thank you for your purchase. You will receive a confirmation email
+          shortly.
+        </p>
+        <button id="closeSuccess" class="btn btn-primary">
+          Continue Shopping
+        </button>
+      </div>
+    </div>
+
+    <script type="module" src="../dist/video-player.js"></script>
+    <script type="module" src="../dist/cart-manager.js"></script>
+    <script src="../src/js/buy-now.js"></script>
+    <script src="../src/js/design-enhancements.js"></script>
+  </body>
+</html>

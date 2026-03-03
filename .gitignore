@@ -1,19 +1,19 @@
 # Dependencies
 node_modules/
-package-lock.json
+backend/node_modules/
+
+# Environment variables
+.env
+backend/.env
 
 # Database
 *.sqlite
 *.db
 
-# Environment variables
-.env
-.env.local
-.env.development
-.env.production
+# Build output
+dist/*.js.map
 
 # Logs
-logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -25,27 +25,22 @@ Thumbs.db
 desktop.ini
 
 # IDE
-.vscode/chrome-debug-profile/
+.vscode/settings.json
 .idea/
 *.swp
 *.swo
 *~
 
-# Build files
-dist/
-build/
-*.min.js
-*.min.css
-
 # Temporary files
-tmp/
-temp/
 *.tmp
+*.temp
+.cache/
 
-# Test files
+# Old/backup files
+*.old
+*.backup
+img/
+
+# Test coverage
 coverage/
 .nyc_output/
-
-# Backup files
-*.bak
-*.backup
